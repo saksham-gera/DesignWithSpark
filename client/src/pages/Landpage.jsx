@@ -1,6 +1,6 @@
 import React from "react";
 import svnitIcon from "../assets/tshirt.webp";
-import "./Landing.css";
+import "./Landpage.css";
 export default function Landing() {
   return (
     <div>
@@ -29,7 +29,7 @@ export default function Landing() {
             elevate your style with our extraordinary collection of
           </div>
           <div className="subhead">vibrant designs.</div>
-          <button className="bt">Design now</button>
+          <a className="bt" href="/dashboard" >Design now</a>
         </div>
         <div className="im">
           <img src={svnitIcon} alt="" />
