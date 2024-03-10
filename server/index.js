@@ -1,13 +1,13 @@
 import express from 'express';
 import dalleRoutes from './routes/dalleRoutes.js'; // Adjust the path as necessary
+import UserRoutes from './routes/UserRoutes.js'
+import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-
-
 dotenv.config();
 
-import mongoose from 'mongoose';
+
 
 
 
@@ -22,8 +22,9 @@ mongoose.connect(mongoURI, {
 }).then(() => {
   console.log('Connected to MongoDB Atlas');
 }).catch(err => {
-  console.error('Error connecting to MongoDB Atlas:', err.message);
+  console.log('Error connecting to MongoDB Atlas:', err.message);
 });
+
 
 
 const app = express();
@@ -33,9 +34,10 @@ const corsOptions = {
   optionsSuccessStatus: 200
 }
 // Use the routes
+app.use(express.json());
 app.use(cors(corsOptions));
 app.use('/dalle', dalleRoutes);
-
+app.use('/users',UserRoutes);
 
 
 app.listen(port, () => {

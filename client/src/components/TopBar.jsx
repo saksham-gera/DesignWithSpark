@@ -12,7 +12,7 @@ export default function TopBar() {
     }
 
   return (
-    <div className='flex pt-4 sticky top-0 bg-white z-10 text-black items-center justify-between w-full h-12 topBar'>
+    <div className='flex pt-4 sticky top-0 bg-white z-10 text-black items-center justify-between w-full topBar'>
         <div className="ml-4 font-semibold text-xl selectedMenuItem">
             {capitalizeFirstLetter(pathname.slice(1))}
         </div>

@@ -4,10 +4,11 @@ import Chart from 'react-apexcharts'
 export default function AreaChart() {
     const data = {
         series: [{
-            name: 'Previous Month',
+
+            name: 'This Month',
             data: [31, 40, 28, 51, 42, 109, 100]
         }, {
-            name: 'This Month',
+            name: 'Previous Month',
             data: [11, 32, 45, 32, 34, 52, 41]
         }],
         options: {
@@ -34,18 +35,18 @@ export default function AreaChart() {
     }
 
     const pieData = {
-        series: [44, 55, 13, 43, 22],
+
+        series: [44, 55, 13, 30,13, 22],
             options: {
               chart: {
                 width: 380,
                 type: 'pie',
                 
               },
-              labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+              labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E','Team F'],
               fill: {
-                colors: ["#000000","green","blue","pink","yellow"],
+                colors: ["#AED0F3","#A1DCD6","#AED0F3","#A1DCD6","#AED0F3","A1DCD6"],
               },
-              colors: ["red","green","blue","pink","yellow"],
               responsive: [{
                 breakpoint: 480,
                 options: {
@@ -62,7 +63,6 @@ export default function AreaChart() {
     return (
         <div className='flex'>
             <Chart className="m-4" options={data.options} series={data.series} type='area' height={350} width={450}/>
-            <Chart className="m-4" options={pieData.options} series={pieData.series} type='pie' height={350} width={450}/>
             
         </div>
     )
