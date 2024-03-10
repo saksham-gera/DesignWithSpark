@@ -9,7 +9,7 @@ import AskAI from '../pages/AskAI';
 export default function Content() {
   return (
     
-    <div className='w-full'>
+    <div className='w-full bg-[#EEEEEE]'>
         <Routes>
             <Route path='/dashboard' element={<Dashboard />}/>
             <Route path='/createnew' element={<Create />}/>
