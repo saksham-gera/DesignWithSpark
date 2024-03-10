@@ -1,20 +1,57 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 const Schema = mongoose.Schema;
+import bcrypt from 'bcrypt';
 
-// Define User Schema
-const UserSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  b_64_image: {
-    type: [String], 
-    required: true
-  }
-});
+const userSchema = new Schema({
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    b_64_image: {
+        type: [String], 
+        
+    }
+})
 
-// Create User model
-const User = mongoose.model('User', UserSchema);
+userSchema.statics.signup = async function (email, password) {
 
-module.exports = User;
+    // validating email and password
+    if (!email || !password)
+        throw Error('All fields are mandatory');
+    if (!validator.isEmail(email))
+        throw Error('Entered email is not a valid email');
+    if (!validator.isStrongPassword(password))
+        throw Error('Password is not strong enough');
+
+    // checking for uniqueness of email
+    const exists = await this.findOne({ email });
+    if (exists)
+        throw Error('Email already exists');
+
+    // if email is unique hash the password and create the user
+    const salt = await bcrypt.genSalt(10);
+    const hashPswd = await bcrypt.hash(password, salt);
+    const user = await this.create({ email, password: hashPswd });
+    return user;
+}
+
+userSchema.statics.login = async function (email, password) {
+    if (!email || !password)
+        throw Error('All fields are mandatory');
+    const user = await this.findOne({ email });
+    if (!user)
+        throw Error('Incorrect email');
+    const match = await bcrypt.compare(password, user.password);
+    if (!match)
+        throw Error('Incorrect password');
+    return user;
+}
+
+const User = mongoose.model('user', userSchema);
+export default User;

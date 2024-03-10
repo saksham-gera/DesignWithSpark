@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
+import axios from 'axios';
 
 import config from '../config/config';
 import state from '../store';
@@ -17,6 +18,7 @@ const Customizer = () => {
 
   const [prompt, setPrompt] = useState('');
   const [generatingImg, setGeneratingImg] = useState(false);
+  const [b_64_image_var,setb_64_image_var]=useState("");
 
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
@@ -65,10 +67,12 @@ const Customizer = () => {
 
       const data = await response.json();
 
-      handleDecals(type, `data:image/png;base64,${data.photo}`)
+      handleDecals(type, `data:image/png;base64,${data.photo}`);
+      setb_64_image_var(data.photo);
     } catch (error) {
       alert(error)
     } finally {
+      
       setGeneratingImg(false);
       setActiveEditorTab("");
     }
@@ -84,6 +88,33 @@ const Customizer = () => {
     }
   }
 
+  const handleSaveImage = () => {
+      
+    axios.post(`http://localhost:5001/users/65ee04cb1a101fe269163772/images`,{ b_64_image: b_64_image_var })
+      .then(response => {
+        // Handle success
+        
+        console.log('Image saved successfully');
+      })
+      .catch(error => {
+        // Handle error
+        console.error('Error saving image:', error);
+      });
+  };
+
+  
+const handleGetImages = () => {
+  axios.get(`http://localhost:5001/users/65ee04cb1a101fe269163772/images`)
+    .then(response => {
+      // Handle success
+      console.log('Images retrieved successfully:', response.data.images);
+    })
+    .catch(error => {
+      // Handle error
+      console.error('Error retrieving images:', error);
+    });
+};
+
   const handleActiveFilterTab = (tabName) => {
     switch (tabName) {
       case "logoShirt":
@@ -97,6 +128,9 @@ const Customizer = () => {
         state.isFullTexture = false;
         break;
     }
+  
+
+   
 
     // after setting the state, activeFilterTab is updated
 
@@ -141,6 +175,19 @@ const Customizer = () => {
           </motion.div>
 
           <motion.div
+            className="absolute z-10 top-5 right-5"
+            {...fadeAnimation}
+          >
+            <CustomButton 
+              type="filled"
+              title="save it"
+              handleClick={handleSaveImage}
+              customStyles="w-fit px-4 py-2.5 font-bold text-sm"
+            />
+            
+          </motion.div>
+
+          <motion.div
             className='filtertabs-container'
             {...slideAnimation("up")}
           >
@@ -159,5 +206,6 @@ const Customizer = () => {
     </AnimatePresence>
   )
 }
+
 
 export default Customizer

@@ -1,13 +1,22 @@
-// routes/userRoutes.js
-
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const UserController = require('../controllers/UserController');
+import {loginUser,signupUser,saveImageForUser,getAllImagesForUser} from '../controllers/UserController.js';
+
+
+// Route to handle user login
+router.post('/login', (req, res) => {
+    loginUser(req, res);
+});
+
+// Route to handle user signup
+router.post('/signup', (req, res) => {
+    signupUser(req, res);
+});
 
 // Route to save an image for a user
-router.post('/users/:userId/images', UserController.saveImageForUser);
+router.post('/:userId/images', saveImageForUser);
 
 // Route to get all images for a user
-router.get('/users/:userId/images', UserController.getAllImagesForUser);
+router.get('/:userId/images', getAllImagesForUser);
 
-module.exports = router;
+export default router;
