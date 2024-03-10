@@ -1,7 +1,6 @@
 import express from 'express';
-import * as dotenv from 'dotenv';
+import dalleRoutes from './routes/dalleRoutes.js'; // Adjust the path as necessary
 import cors from 'cors';
-
 import dalleRoutes from './routes/dalle.routes.js';
 dotenv.config();
 
@@ -23,14 +22,19 @@ mongoose.connect(mongoURI, {
   console.error('Error connecting to MongoDB Atlas:', err.message);
 });
 
+
 const app = express();
-app.use(cors());
-app.use(express.json({limig: "50mb"}))
+const port = 5001;
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  optionsSuccessStatus: 200
+}
+// Use the routes
+app.use(cors(corsOptions));
+app.use('/dalle', dalleRoutes);
 
-app.use('/api/v1/dalle',dalleRoutes);
 
-app.get('/',(req,res)=>{
-  res.status(200).json({message : "Hello from SPAM BYTE"})
-})
 
-app.listen(5001,()=>console.log('Server has started on port 5001'))
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
+});
