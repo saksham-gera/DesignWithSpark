@@ -45,8 +45,8 @@ export default function Sidebar() {
             icon: <ContactSupportIcon fontSize='small'/>
         },
         {
-            name: "Fitness Goals",
-            route: "/fitnessgoals",
+            name: "Editor",
+            route: "/editor",
             icon: <SportsGymnasticsIcon fontSize='small' />
         },
     ];
