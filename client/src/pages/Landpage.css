@@ -1,0 +1,117 @@
+*{
+    background-color: rgb(216, 233, 248);
+}
+.navbar{
+    display: flex;
+    height: 30px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(216, 233, 248);
+    margin-top: 50px;
+}
+.logo{
+    height: 90px;
+    width: 110px;
+    margin-left: 90px;
+    
+}
+
+
+.nav-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin-right: 110px;
+}
+
+.navbar-button{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 25px;
+    border: none;
+    font-size: 22px;
+    font-weight: 200;
+    color  :rgb(1, 1, 49)
+}
+
+.profile-button{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 25px;
+    border-radius: 5px;
+    border: none;
+    background: rgb(93, 93, 240);
+    font-size: 22px;
+    font-weight: 200;
+    color  :white;
+    padding: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-shadow: 1px;
+}
+
+.body{
+    margin-top: 110px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    height:100%;
+    background-color: rgb(216, 233, 248);
+}
+
+.content{
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+.tag{
+    width: 40%;
+    color: rgb(107, 69, 173,0.6);
+    background-color: aliceblue;
+    font-weight: 550;
+    border-radius: 15px;
+    padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 30px;
+}
+
+.head{
+        display: flex;
+        font-size: 3rem; 
+        color: rgb(3, 3, 82);   
+       
+}
+.head1{
+    display: flex;
+    font-size: 3rem; 
+    color: rgb(3, 3, 82);   
+    margin-bottom: 30px;
+}
+.subhead{
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(127, 127, 129, 0.5)
+}
+.bt{
+    display: flex;
+    width: 33%;
+    background: rgb(93, 93, 240);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px;
+    padding: 20px;
+    padding-left: 17px;
+    padding-right: 13px;
+    color: white;
+    margin-top: 60px;
+    font-size: 22px;
+}   
