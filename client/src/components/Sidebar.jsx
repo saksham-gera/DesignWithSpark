@@ -15,6 +15,7 @@ import { IconButton } from '@mui/material';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 
 
 
@@ -39,9 +40,9 @@ export default function Sidebar() {
             icon: <InventoryIcon fontSize='small' />
         },
         {
-            name: "Calender",
-            route: "/calender",
-            icon: <CalendarTodaySharpIcon fontSize='small'/>
+            name: "Ask AI",
+            route: "/askai",
+            icon: <ContactSupportIcon fontSize='small'/>
         },
         {
             name: "Fitness Goals",
