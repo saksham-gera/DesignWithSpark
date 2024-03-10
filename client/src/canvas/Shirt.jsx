@@ -13,10 +13,12 @@ const Shirt = () => {
   const logoTexture = useTexture(snap.logoDecal);
   const fullTexture = useTexture(snap.fullDecal);
 
-  useFrame((_, delta) => {
-    materials.lambert1.color.copy(easing.dampC(materials.lambert1.color, snap.color, 0.25, delta));
-    materials.lambert1.needsUpdate = true;
+
+  useFrame((state, delta) => {
+    easing.dampC(materials.lambert1.color, snap.color, 0.25, delta)
   });
+
+ 
   
 
   const stateString = JSON.stringify(snap);

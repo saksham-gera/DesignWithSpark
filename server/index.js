@@ -1,13 +1,13 @@
 import express from 'express';
 import dalleRoutes from './routes/dalleRoutes.js'; // Adjust the path as necessary
+import UserRoutes from './routes/UserRoutes.js'
+import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-
-
 dotenv.config();
 
-import mongoose from 'mongoose';
+
 
 
 
@@ -26,6 +26,7 @@ mongoose.connect(mongoURI, {
 });
 
 
+
 const app = express();
 const port = 5001;
 const corsOptions = {
@@ -35,7 +36,7 @@ const corsOptions = {
 // Use the routes
 app.use(cors(corsOptions));
 app.use('/dalle', dalleRoutes);
-
+app.use('/user',UserRoutes);
 
 
 app.listen(port, () => {
