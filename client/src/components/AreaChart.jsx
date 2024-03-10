@@ -4,6 +4,7 @@ import Chart from 'react-apexcharts'
 export default function AreaChart() {
     const data = {
         series: [{
+
             name: 'This Month',
             data: [31, 40, 28, 51, 42, 109, 100]
         }, {
@@ -34,6 +35,7 @@ export default function AreaChart() {
     }
 
     const pieData = {
+
         series: [44, 55, 13, 30,13, 22],
             options: {
               chart: {
@@ -61,7 +63,6 @@ export default function AreaChart() {
     return (
         <div className='flex'>
             <Chart className="m-4" options={data.options} series={data.series} type='area' height={350} width={450}/>
-            {/* <Chart className="m-4" options={pieData.options} series={pieData.series} type='pie' height={350} width={450}/> */}
             
         </div>
     )

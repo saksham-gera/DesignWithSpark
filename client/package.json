@@ -22,6 +22,8 @@
     "@mui/material": "^5.15.12",
     "@react-three/drei": "^9.65.3",
     "@react-three/fiber": "^8.12.0",
+    "@syncfusion/ej2-buttons": "^24.2.7",
+    "@syncfusion/ej2-react-image-editor": "^24.2.8",
     "apexcharts": "^3.46.0",
     "axios": "^1.6.7",
     "framer-motion": "^11.0.8",

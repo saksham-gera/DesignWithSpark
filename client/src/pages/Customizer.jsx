@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import config from '../config/config';
-import state from '../store';
+import state2 from '../store';
 import { download } from '../assets';
 import { downloadCanvasToImage, reader } from '../config/helpers';
 import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants';
@@ -12,7 +13,24 @@ import { fadeAnimation, slideAnimation } from '../config/motion';
 import { AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../components';
 
 const Customizer = () => {
-  const snap = useSnapshot(state);
+  const snap = useSnapshot(state2);
+  const location = useLocation();
+  
+  useEffect(() => {
+    if(location.state) {
+      const data = location.state;
+      console.log(data);
+      console.log("reached here")
+
+      if(data.logo) {
+        handleDecals('logo', data.logo);
+      }
+      if(data.full) {
+        handleDecals('full', data.full);
+      }
+    }
+  },[]);
+  
 
   const [file, setFile] = useState('');
 
@@ -81,7 +99,7 @@ const Customizer = () => {
   const handleDecals = (type, result) => {
     const decalType = DecalTypes[type];
 
-    state[decalType.stateProperty] = result;
+    state2[decalType.stateProperty] = result;
 
     if(!activeFilterTab[decalType.filterTab]) {
       handleActiveFilterTab(decalType.filterTab)
@@ -118,14 +136,14 @@ const handleGetImages = () => {
   const handleActiveFilterTab = (tabName) => {
     switch (tabName) {
       case "logoShirt":
-          state.isLogoTexture = !activeFilterTab[tabName];
+          state2.isLogoTexture = !activeFilterTab[tabName];
         break;
       case "stylishShirt":
-          state.isFullTexture = !activeFilterTab[tabName];
+          state2.isFullTexture = !activeFilterTab[tabName];
         break;
       default:
-        state.isLogoTexture = true;
-        state.isFullTexture = false;
+        state2.isLogoTexture = true;
+        state2.isFullTexture = false;
         break;
     }
   
