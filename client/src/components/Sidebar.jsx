@@ -73,9 +73,9 @@ export default function Sidebar() {
     return (
         <motion.div
             animate={{ width: expanded ? `${0.20*window.innerWidth}px` : "56px", transition: { duration: 0.6, type: "spring" } }}
-            transition={{ type: 'spring', stiffness: 100 }} className="sticky top-0 h-screen bg-white text-black">
+            transition={{ type: 'spring', stiffness: 100 }} className="sticky top-0 h-screen  text-black">
             <div className={expanded ? "p-6 flex justify-between text-2xl font-bold" : "pt-6 pb-6 flex justify-center"}>
-                <div className={expanded ? "flex" : "hidden"}>
+                <div className={expanded ? "flex" : "hidden" }>
                     Fitness
                 </div>
                 <IconButton onClick={() => { setExpanded(!expanded) }} color='#ffffff'>
