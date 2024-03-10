@@ -53,7 +53,7 @@ const Customizer = () => {
     try {
       setGeneratingImg(true);
 
-      const response = await fetch('http://localhost:5001/api/v1/dalle', {
+      const response = await fetch('http://localhost:5001/dalle/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
