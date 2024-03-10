@@ -13,10 +13,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    b_64_image: {
-        type: [String], 
-        
-    }
+    b_64_image: [{
+        type: String,
+    }]
 })
 
 userSchema.statics.signup = async function (email, password) {

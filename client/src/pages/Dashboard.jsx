@@ -12,7 +12,7 @@ const theme = useTheme();
 
     <div className='m-5 dashboard'>
       <GreetingWithPlanner />
-      <div className="flex justify-around	mb-10">
+      <div className="flex 	mb-10">
           <AreaChart />
           <Summarycard />
       </div>

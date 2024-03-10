@@ -22,7 +22,7 @@ mongoose.connect(mongoURI, {
 }).then(() => {
   console.log('Connected to MongoDB Atlas');
 }).catch(err => {
-  console.error('Error connecting to MongoDB Atlas:', err.message);
+  console.log('Error connecting to MongoDB Atlas:', err.message);
 });
 
 
@@ -34,9 +34,10 @@ const corsOptions = {
   optionsSuccessStatus: 200
 }
 // Use the routes
+app.use(express.json());
 app.use(cors(corsOptions));
 app.use('/dalle', dalleRoutes);
-app.use('/user',UserRoutes);
+app.use('/users',UserRoutes);
 
 
 app.listen(port, () => {

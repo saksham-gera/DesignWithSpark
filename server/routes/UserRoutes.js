@@ -1,5 +1,5 @@
 import express from 'express';
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 import {loginUser,signupUser,saveImageForUser,getAllImagesForUser} from '../controllers/UserController.js';
 
 
@@ -14,7 +14,7 @@ router.post('/signup', (req, res) => {
 });
 
 // Route to save an image for a user
-router.post('/:userId/images', saveImageForUser);
+router.put('/:userId/images', saveImageForUser);
 
 // Route to get all images for a user
 router.get('/:userId/images', getAllImagesForUser);
