@@ -1,9 +1,10 @@
 import React from "react";
 import svnitIcon from "../assets/tshirt.webp";
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import "./Landpage.css";
 export default function Landing() {
   return (
-    <div>
+    <div className="aakhu">
       <div className="header">
         <div className="navbar">
           <img className="logo" src={svnitIcon} alt="Logo" />
@@ -12,7 +13,7 @@ export default function Landing() {
             <button className="navbar-button">Features</button>
             <button className="navbar-button">Contributors</button>
             <button className="navbar-button">Log In</button>
-            <button className="profile-button">Try Free</button>
+            <button className="profile-button">Design Now</button>
           </div>
         </div>
       </div>
@@ -29,7 +30,7 @@ export default function Landing() {
             elevate your style with our extraordinary collection of
           </div>
           <div className="subhead">vibrant designs.</div>
-          <a className="bt" href="/dashboard" >Design now</a>
+          <a className="bt" href="/dashboard" style={{gap:"10px",alignContent:"center",alignItems:"center",fontSize:"30px"}} >Try Free < ArrowOutwardIcon sx={{ fontSize: 24 }}/></a>
         </div>
         <div className="im">
           <img src={svnitIcon} alt="" />
