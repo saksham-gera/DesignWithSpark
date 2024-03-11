@@ -1,4 +1,4 @@
-import User from '../models/User.js';
+import {User,Images} from '../models/User.js';
 import jwt from 'jsonwebtoken';
 
 const createToken = (id) => {
@@ -30,21 +30,24 @@ export const signupUser = async (req, res) => {
 // Controller method to save image for a user
 export const saveImageForUser = async (req, res) => {
     try {
+
         const user = await User.findById(req.params.userId); // Find the user by ID
         if (!user) {
             return res.status(404).send({ message: 'User not found' });
         }
+        const {photo}=req.body;
+        // console.log(photo);
+        const newImage= new Images(
+            {
+                Data : photo
+            });
+            
+            const savedImage = await newImage.save();
+        await User.findByIdAndUpdate(req.params.userId, {
+             $push: { images: savedImage._id } 
+            }); 
 
-        // Assume req.body.b_64_images contains an array of base64 encoded image strings
-        const newImages = req.body.photo;
-        console.log(newImages);
-
-        
-            // Concatenate the new images with the existing ones
-            // user.b_64_image.push(newImages);
-            await User.findByIdAndUpdate(req.params.userId, { $push: {b_64_image: newImages} }) // Save the updated user
-
-            res.status(201).send({ message: 'Images saved successfully' });
+            res.status(201).send({ savedImage });
         
     } catch (error) {
         console.log(error);
@@ -61,8 +64,46 @@ export const getAllImagesForUser = async (req, res) => {
             return res.status(404).send({ message: 'User not found' });
         }
         
-        res.send({ images: user.b_64_image });
+        res.send({
+             images: user.images
+            });
     } catch (error) {
         res.status(500).send({ error: error.message });
     }
 };
+
+
+export const getImageData = async (req, res) => {
+
+    try {
+        // Fetch image data from the database
+        const image = await Images.findById(req.params.imageId);
+        const imageData = image.Data;
+        if (!imageData) {
+            return res.status(404).json({ error: error.message});
+        }
+
+        res.status(200).send({ image });
+    } catch (error) {
+        console.error('Error fetching image data:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+const deleteAllImages = async (req, res) => {
+    try {
+        // Step 1: Delete all documents from the Images collection
+        await Images.deleteMany({});
+
+        // Step 2 (Optional): Clear the images array in all User documents
+        // This step is necessary if you want to maintain referential integrity
+        await User.updateMany({}, { $set: { images: [] } });
+
+        res.send({ message: 'All images have been deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting images:', error);
+        res.status(500).send({ message: 'Error deleting images' });
+    }
+};
+
+export default deleteAllImages;

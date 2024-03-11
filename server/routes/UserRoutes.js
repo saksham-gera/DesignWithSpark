@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router({mergeParams: true});
-import {loginUser,signupUser,saveImageForUser,getAllImagesForUser} from '../controllers/UserController.js';
+import deleteAllImages, {loginUser,signupUser,saveImageForUser,getAllImagesForUser, getImageData} from '../controllers/UserController.js';
 
 
 // Route to handle user login
@@ -18,5 +18,7 @@ router.put('/:userId/images', saveImageForUser);
 
 // Route to get all images for a user
 router.get('/:userId/images', getAllImagesForUser);
+router.get('/:imageId', getImageData);
+router.delete('/deleteImage',deleteAllImages);
 
 export default router;
