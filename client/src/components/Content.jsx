@@ -2,8 +2,8 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Dashboard from '../pages/Dashboard';
 import Create from '../pages/Create';
-import AskAI from '../pages/AskAI';
 import Editor from '../pages/Editor';
+import Inventory from '../pages/Inventory';
 import Aboutus from '../pages/Aboutus';
 
 export default function Content() {
@@ -13,7 +13,7 @@ export default function Content() {
         <Routes>
             <Route path='/dashboard' element={<Dashboard />}/>
             <Route path='/createnew' element={<Create />}/>
-            <Route path='/askai' element={<AskAI />}/>
+            <Route path='/inventory' element={<Inventory />}/>
             <Route path='/editor' element={<Editor />}/>
             <Route path='/aboutus' element={< Aboutus/>}/>
             <Route path='/logout' element={<div className='text-blue-800'>Log Out Success</div>}/>
