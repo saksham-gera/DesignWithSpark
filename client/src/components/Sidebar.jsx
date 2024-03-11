@@ -22,7 +22,7 @@ export default function Sidebar() {
     const pathname = location.pathname;
 
     useEffect(() => {
-        setSelected(pathname == '/dashboard' ? 0 : pathname == '/createnew' ? 1 : pathname == '/editor' ? 2 : pathname == '/inventory' ? 3 : 0)
+        setSelected(pathname == '/dashboard' ? 0 : pathname == '/createnew' ? 1 : pathname == '/editor' ? 2 : pathname == '/inventory' ? 3 : pathname == '/aboutus' ? 4 : 0)
     }, [location])
 
     const mainMenuData = [
