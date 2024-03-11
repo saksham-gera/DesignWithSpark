@@ -1,14 +1,14 @@
 .aakhu{
     background-color: rgb(216, 233, 248);
-    height:55rem;
+    
     scroll-behavior: smooth;
     overflow-y: hidden;
 }
 .navbar{
     display: flex;
-    height: 30px;
+    /* height: 30px; */
     align-items: center;
-    justify-content: space-between;
+    
     background-color: rgb(216, 233, 248);
     
 }
@@ -21,7 +21,7 @@
 
 
 .nav-links{
-    display: flex;
+    display:flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
@@ -58,7 +58,7 @@
 
 .body{
     margin-top: 10px;
-    display: flex;
+    
     width: 100%;
     align-items: center;
     justify-content: space-around;
@@ -116,3 +116,8 @@
     margin-top: 60px;
     font-size: 22px;
 }   
+
+/* Existing styles */
+
+/* Add responsive styles for smaller screens */
+/* Add responsive styles for smaller screens */
