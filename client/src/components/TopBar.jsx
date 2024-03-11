@@ -12,7 +12,7 @@ export default function TopBar() {
     //     return string.charAt(0).toUpperCase() + string.slice(1);
     // }
 
-    let pageName = pathname == '/dashboard' ? "Dashboard" : pathname == '/createnew' ? "Create New Design" : pathname == '/editor' ? "Customise Your Design" : pathname == '/inventory' ? "Inventory" : "Error 404";
+    let pageName = pathname == '/dashboard' ? "Dashboard" : pathname == '/createnew' ? "Create New Design" : pathname == '/editor' ? "Customise Your Design" : pathname == '/inventory' ? "Inventory" : pathname == '/aboutus' ? "About Us": "Error 404";
     
 
   return (
