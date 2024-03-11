@@ -23,7 +23,7 @@ export default function Dashboard() {
         </div>
         <MetricsContainer />
       </div>
-      <div className="">
+      <div className="md:ml-8 ml-0">
         <AIWithText />      
       </div>
     </div>

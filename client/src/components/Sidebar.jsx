@@ -10,6 +10,8 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import AddIcon from '@mui/icons-material/Add';
 import { IconButton } from '@mui/material';
 import InventoryIcon from '@mui/icons-material/Inventory';
+import FeedIcon from '@mui/icons-material/Feed';
+import Feed from '@mui/icons-material/Feed';
 
 export default function Sidebar() {
     const [expanded, setExpanded] = useState(true);
@@ -53,7 +55,7 @@ export default function Sidebar() {
         {
             name: "About Us",
             route: "/aboutus",
-            icon: <InventoryIcon fontSize='small' />
+            icon: <Feed fontSize='small' />
         }
     ];
 
