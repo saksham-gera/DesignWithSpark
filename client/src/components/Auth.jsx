@@ -4,7 +4,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [IsLoggedIn, setLoggedIn] = useState(false);
-  const [Response, setResponse] = useState();
+  const [userDetails, setUserDetails] = useState();
 
   const isLoggedIn = async () => {
     try {
@@ -14,10 +14,11 @@ export const AuthProvider = ({ children }) => {
         const response = await axios.get('http://localhost:5001/users/login', {
           headers: { Authorization: localStorage.getItem('token') },
         });
-        console.log('User profile:', response.data);
+        console.log('User profile:', response);
         if (response.data) {
+          setUserDetails(response.data);
+          // console.log(userDetails)
           setLoggedIn(true);
-          setResponse(response);
         } else {
           logout();
         }
@@ -36,7 +37,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ IsLoggedIn, Response, logout }}>
+    <AuthContext.Provider value={{ IsLoggedIn, userDetails, logout }}>
       {children}
     </AuthContext.Provider>
   );

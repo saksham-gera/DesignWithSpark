@@ -3,58 +3,76 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGooglePlusG, faFacebookF, faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import './Login.css'; // Import your CSS file
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-
   const toggleForm = () => {
     setIsSignUp(!isSignUp);
   };
-
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
+  const [formSignupData, setFormSignupData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  let navigate = useNavigate();
+  const dangerLoginNotify = () => toast.error('Login Failed! Please Login Again');
+  const dangerSignupNotify = () => toast.error('Signup Failed! Please Login Again');
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  };
+  const handleSignupChange = (event) => {
+    const { name, value } = event.target;
+    setFormSignupData({ ...formSignupData, [name]: value });
   };
 
   const handleLogin = async (e) => {
     try {
       e.preventDefault();
       const response = await axios.post('http://localhost:5001/users/login', formData);
-
       if (response.status == 200) {
         const { token } = response.data;
         localStorage.setItem('token', token);
+        navigate('/dashboard', { replace: true });
       }
       window.location.reload();
-
     } catch (error) {
+      dangerLoginNotify();
       console.error('login failed', error.response);
     }
+    
   };
 
   const handleSignup = async (e) => {
     try {
         e.preventDefault();
-        const response = await axios.post('http://localhost:5001/users/signup', formData);
+        const response = await axios.post('http://localhost:5001/users/signup', formSignupData);
 
         if (response.status == 200) {
             const { token } = response.data;
             localStorage.setItem('token', token);
+            navigate('/dashboard', { replace: true });
         }
         window.location.reload();
-
     } catch (error) {
+        dangerSignupNotify();
         console.error('login failed', error.response);
     }
+    
 };
 
   return (
     <div className="aakhu">
+      <Toaster />
       <div className={`container ${isSignUp ? 'active' : ''}`} style={{ width: "65%" }}>
         <div className="form-container sign-up">
           <form onSubmit={handleSignup}>
@@ -66,10 +84,12 @@ const Login = () => {
               <a href="google.com" className="icon"><FontAwesomeIcon icon={faLinkedinIn} /></a>
             </div>
             <span>or use your email for registration</span>
-            <input type="email" placeholder="Email" value={formData.email}
-                    onChange={handleChange}/>
-            <input type="password" placeholder="Password" value={formData.password}
-                    onChange={handleChange} required/>
+            <input name='name' placeholder="Name" value={formSignupData.name}
+                    onChange={handleSignupChange}/>
+            <input type="email" name='email' placeholder="Email" value={formSignupData.email}
+                    onChange={handleSignupChange}/>
+            <input type="password" name='password' placeholder="Password" value={formSignupData.password}
+                    onChange={handleSignupChange} required/>
             <button type='submit' style={{ fontSize: '18px' }}>Sign Up</button>
           </form>
         </div>
@@ -83,9 +103,9 @@ const Login = () => {
               <a href="google.com" className="icon"><FontAwesomeIcon icon={faLinkedinIn} /></a>
             </div>
             <span>or use your email password</span>
-            <input type="email" value={formData.email}
+            <input type="email" name='email' value={formData.email}
               onChange={handleChange} placeholder="Email" />
-            <input type="password" placeholder="Password" value={formData.password}
+            <input type="password" name='password' placeholder="Password" value={formData.password}
               onChange={handleChange} />
             <a href="google.com">Forget Your Password?</a>
             <button type='submit' style={{ fontSize: '18px' }}>Login</button>

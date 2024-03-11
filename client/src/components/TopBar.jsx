@@ -4,13 +4,12 @@ import {mockAccountData} from '../mock.js';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { IconButton } from '@mui/material';
+import { useAuth } from './Auth.jsx';
 
 export default function TopBar() {
     const {pathname} = useLocation();
 
-    // function capitalizeFirstLetter(string) {
-    //     return string.charAt(0).toUpperCase() + string.slice(1);
-    // }
+    const {userDetails} = useAuth();
 
     let pageName = pathname == '/dashboard' ? "Dashboard" : pathname == '/createnew' ? "Create New Design" : pathname == '/editor' ? "Customise Your Design" : pathname == '/inventory' ? "Inventory" : "Error 404";
     
@@ -33,10 +32,10 @@ export default function TopBar() {
                 </div>
                 <div className="profile-data">
                     <div className="text-sm ml-2 m-1 font-bold profile-name">
-                       {mockAccountData.name}
+                       {userDetails.name}
                     </div>
                     <div className="text-xs ml-2 m-1 profile-email">
-                        {mockAccountData.email}
+                        {userDetails.email}
                     </div>
                 </div>
             </div>

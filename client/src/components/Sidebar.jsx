@@ -49,7 +49,6 @@ export default function Sidebar() {
     ];
 
 
-    // console.log(window.innerHeight());
     return (
         <motion.div
             animate={{ width: expanded ? `${0.20 * window.innerWidth}px` : "56px", transition: { duration: 0.6, type: "spring" } }}

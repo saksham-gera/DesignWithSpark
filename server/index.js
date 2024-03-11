@@ -4,21 +4,18 @@ import UserRoutes from './routes/UserRoutes.js'
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
+import bodyParser from "body-parser";
 dotenv.config();
-
-
-
-
-
+const app = express();
 // MongoDB connection URI
-const mongoURI = 'mongodb+srv://ajha94023:3PX3aEsdgLIwknpN@cluster2.mwjrxlb.mongodb.net/?retryWrites=true&w=majority&appName=cluster2';
-
-
+const mongoURI = 'mongodb+srv://ajha94023:qwertyuiop98765@cluster2.mwjrxlb.mongodb.net/?retryWrites=true&w=majority&appName=cluster2';
+app.use(bodyParser.json());
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Connect to MongoDB
 mongoose.connect(mongoURI, {
-  
+
 }).then(() => {
   console.log('Connected to MongoDB Atlas');
 }).catch(err => {
@@ -26,8 +23,6 @@ mongoose.connect(mongoURI, {
 });
 
 
-
-const app = express();
 const port = 5001;
 const corsOptions = {
   origin: 'http://localhost:5173',

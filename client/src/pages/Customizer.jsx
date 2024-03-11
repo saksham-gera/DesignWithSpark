@@ -20,9 +20,6 @@ const Customizer = () => {
   useEffect(() => {
     if (location.state) {
       const data = location.state;
-      console.log(data);
-      console.log("reached here")
-
       if (data.logo) {
         setb_64_image_var(data.logo.slice(22));
         handleDecals('logo', data.logo);

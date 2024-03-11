@@ -9,18 +9,7 @@ export default function Landing() {
 
   return (
     <div className="aakhu">
-      <div className="header">
-        <div className="navbar">
-          <img className="logo" src={svnitIcon} alt="Logo" />
-          <div className="nav-links">
-            <button className="navbar-button">Home</button>
-            <button className="navbar-button">Features</button>
-            <button className="navbar-button">Contributors</button>
-            <button className="navbar-button">Log In</button>
-            <button className="profile-button">Design Now</button>
-          </div>
-        </div>
-      </div>
+
       <div className="body">
         <div className="content">
           <div className="tag">AI-Powered 3D T-Shirts</div>
@@ -34,7 +23,7 @@ export default function Landing() {
             elevate your style with our extraordinary collection of
           </div>
           <div className="subhead">vibrant designs.</div>
-          <a className="bt" href={IsLoggedIn ? "/dashboard" : "/login"} style={{gap:"10px",alignContent:"center",alignItems:"center",fontSize:"30px"}} >Try Free < ArrowOutwardIcon sx={{ fontSize: 24 }}/></a>
+          <a className="bt" href={IsLoggedIn ? "/dashboard" : "/login"} style={{gap:"10px",alignContent:"center",alignItems:"center",fontSize:"30px"}} >Design Now< ArrowOutwardIcon sx={{ fontSize: 24 }}/></a>
         </div>
         <div className="im">
           <img src={svnitIcon} alt="" />

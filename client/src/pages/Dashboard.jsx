@@ -14,7 +14,7 @@ export default function Dashboard() {
     <div className='mr-[2rem] mt-5 flex justify-between dashboard'>
       <div className="left flex flex-col items-center justify-center">
         <div className="mid flex flex-col">
-          <GreetingBox name="JASHWANTH" />
+          <GreetingBox/>
           <div className="flex">
             <AreaChart />
             <Summarycard />

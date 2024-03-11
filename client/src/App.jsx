@@ -6,14 +6,19 @@ import Activity from './Activity'
 import Landing from './pages/Landpage'
 import { registerLicense } from "@syncfusion/ej2-base";
 import Login from './pages/Login'
+import { useAuth } from './components/Auth'
 
-registerLicense("Ngo9BigBOggjHTQxAR8/V1NAaF1cVGhNYVppR2Nbe05zflVCalhWVBYiSV9jS3pTdURjWHped3BVQ2RfVw==");
+
+
+registerLicense(import.meta.env.VITE_SYNCFUSION);
 function App() {
+  const {IsLoggedIn} = useAuth();
+
   return (
     <>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          {window.location.pathname === '/' ? (<Landing />) : window.location.pathname === '/login' ? <Login /> : (<Activity />)}
+          {window.location.pathname === '/' ? (<Landing />) : window.location.pathname === '/login' && !IsLoggedIn ? <Login /> : (<Activity />) }
         </ThemeProvider>
       </BrowserRouter>
     </>
