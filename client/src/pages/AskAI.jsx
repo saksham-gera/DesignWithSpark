@@ -3,8 +3,8 @@ import AIWithText from '../components/AIWithText'
 
 export default function AskAI() {
   return (
-    <div className='mt-4 flex justify-center items-center'>
-        <AIWithText />
+    <div className='ml-5 flex justify-center items-center '>
+        
     </div>
   )
 }
