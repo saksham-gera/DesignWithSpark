@@ -32,11 +32,11 @@ html {
 }
 
 .download-btn {
-  @apply w-14 h-14 flex justify-center items-center rounded-full glassmorphism cursor-pointer outline-none;
+  @apply w-14 h-14 flex justify-center items-center rounded-full cursor-pointer outline-none;
 }
 
 .editortabs-container {
-  @apply glassmorphism w-16 border-[2px] rounded-lg flex flex-col justify-center items-center ml-1 py-4 gap-4;
+  @apply w-16 border-[2px] rounded-lg flex flex-col justify-center items-center ml-1 py-4 gap-4;
 }
 
 .filtertabs-container {
@@ -44,7 +44,7 @@ html {
 }
 
 .aipicker-container {
-  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[220px] rounded-md flex flex-col gap-4;
+  @apply glassmorphism bg-white absolute left-full ml-3 p-3 w-[195px] h-[220px] rounded-md flex flex-col gap-4;
 }
 
 .aipicker-textarea {
@@ -52,7 +52,7 @@ html {
 }
 
 .filepicker-container {
-  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[220px] flex flex-col rounded-md;
+  @apply glassmorphism bg-white absolute left-full ml-3 p-3 w-[195px] h-[220px] flex flex-col rounded-md;
 }
 
 .filepicker-label {
