@@ -22,6 +22,7 @@
     width: 7px;
     max-width: 100%;
     min-height: 480px;
+
     
 }
 
@@ -208,3 +209,9 @@
 .container.active .toggle-right {
     transform: translateX(200%);
 }
+
+@media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  }

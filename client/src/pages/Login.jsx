@@ -5,6 +5,7 @@ import './Login.css'; // Import your CSS file
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import { Direction } from '@syncfusion/ej2-react-image-editor';
 
 
 const Login = () => {
@@ -73,7 +74,7 @@ const Login = () => {
   return (
     <div className="aakhu">
       <Toaster />
-      <div className={`container ${isSignUp ? 'active' : ''}`} style={{ width: "65%" }}>
+      <div className={`container ${isSignUp ? 'active' : ''}`} style={{  width: "65%" }}>
         <div className="form-container sign-up">
           <form onSubmit={handleSignup}>
             <h1 style={{ fontSize: "30px" }}>Create Account</h1>
