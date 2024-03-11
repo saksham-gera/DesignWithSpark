@@ -1,7 +1,6 @@
 import express from 'express';
 import dalleRoutes from './routes/dalleRoutes.js'; // Adjust the path as necessary
 import UserRoutes from './routes/UserRoutes.js'
-import DriveRoutes from './routes/DriveRoutes.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -35,7 +34,7 @@ app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use('/dalle', dalleRoutes);
 app.use('/users',UserRoutes);
-app.use('/drive', DriveRoutes);
+
 
 
 app.listen(port, () => {
