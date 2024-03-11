@@ -3,13 +3,10 @@ import React, { useState } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import SportsGymnasticsIcon from '@mui/icons-material/SportsGymnastics';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import InfoIcon from '@mui/icons-material/Info';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import CalendarTodaySharpIcon from '@mui/icons-material/CalendarTodaySharp';
 import AddIcon from '@mui/icons-material/Add';
 import { IconButton } from '@mui/material';
 import InventoryIcon from '@mui/icons-material/Inventory';
@@ -35,6 +32,11 @@ export default function Sidebar() {
             icon: <AddIcon fontSize='small' />
         },
         {
+            name: "Editor",
+            route: "/editor",
+            icon: <BorderColorIcon fontSize='small' />
+        },
+        {
             name: "Inventory",
             route: "/inventory",
             icon: <InventoryIcon fontSize='small' />
@@ -43,12 +45,7 @@ export default function Sidebar() {
             name: "Ask AI",
             route: "/askai",
             icon: <ContactSupportIcon fontSize='small'/>
-        },
-        {
-            name: "Editor",
-            route: "/editor",
-            icon: <SportsGymnasticsIcon fontSize='small' />
-        },
+        }
     ];
 
     const accountData = [
