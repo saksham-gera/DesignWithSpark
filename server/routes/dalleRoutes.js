@@ -9,7 +9,7 @@ dotenv.config(); // Initialize dotenv
 const apiKey = process.env.Open_AI_Api_KEY;
 
 // Initialize the OpenAI object with the API key from environment variables
-const openai = new OpenAI({ apiKey });
+const openai = new OpenAI( {apiKey} );
 
 // Create a router
 const router = express.Router();
