@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import {mockAccountData} from '../mock.js';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
@@ -7,14 +7,18 @@ import { IconButton } from '@mui/material';
 
 export default function TopBar() {
     const {pathname} = useLocation();
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+
+    // function capitalizeFirstLetter(string) {
+    //     return string.charAt(0).toUpperCase() + string.slice(1);
+    // }
+
+    let pageName = pathname == '/dashboard' ? "Dashboard" : pathname == '/createnew' ? "Create New Design" : pathname == '/editor' ? "Customise Your Design" : pathname == '/inventory' ? "Inventory" : "Error 404";
+    
 
   return (
     <div className='flex pt-4 sticky top-0 bg-white z-10 text-black items-center justify-between w-full topBar'>
         <div className="ml-4 font-semibold text-xl selectedMenuItem">
-            {capitalizeFirstLetter(pathname.slice(1))}
+            {pageName}
         </div>
         <div className="flex items-center justify-evenly w-72 accountButtons">
             <IconButton>

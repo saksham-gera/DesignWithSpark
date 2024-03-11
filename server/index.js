@@ -12,6 +12,7 @@ dotenv.config();
 
 
 const mongoURI = 'mongodb+srv://ajha94023:qwertyuiop98765@cluster2.mwjrxlb.mongodb.net/?retryWrites=true&w=majority&appName=cluster2';
+
 // Connect to MongoDB
 mongoose.connect(mongoURI, {
   

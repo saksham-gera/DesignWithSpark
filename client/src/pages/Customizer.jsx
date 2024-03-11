@@ -1,24 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import config from '../config/config';
-import state from '../store';
+import state2 from '../store';
 import { download } from '../assets';
 import { downloadCanvasToImage, reader } from '../config/helpers';
 import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants';
 import { fadeAnimation, slideAnimation } from '../config/motion';
-import { AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../components';
+import { OpenInEditor, AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../components';
 
 const Customizer = () => {
-  const snap = useSnapshot(state);
+  const snap = useSnapshot(state2);
+  const location = useLocation();
+  const [b_64_image_var, setb_64_image_var] = useState("");
+
+  useEffect(() => {
+    if (location.state) {
+      const data = location.state;
+      console.log(data);
+      console.log("reached here")
+
+      if (data.logo) {
+        setb_64_image_var(data.logo.slice(22));
+        handleDecals('logo', data.logo);
+      }
+      if (data.full) {
+        setb_64_image_var(data.full.slice(22));
+        handleDecals('full', data.full);
+      }
+    }
+  }, []);
+
 
   const [file, setFile] = useState('');
 
   const [prompt, setPrompt] = useState('');
   const [generatingImg, setGeneratingImg] = useState(false);
-  const [b_64_image_var,setb_64_image_var]=useState("");
 
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
@@ -29,8 +49,8 @@ const Customizer = () => {
   // show tab content depending on the activeTab
   const generateTabContent = () => {
     switch (activeEditorTab) {
-      case "colorpicker":
-        return <ColorPicker />
+      case "openineditor":
+        return <OpenInEditor b_64_image_var={b_64_image_var} />
       case "filepicker":
         return <FilePicker
           file={file}
@@ -38,7 +58,7 @@ const Customizer = () => {
           readFile={readFile}
         />
       case "aipicker":
-        return <AIPicker 
+        return <AIPicker
           prompt={prompt}
           setPrompt={setPrompt}
           generatingImg={generatingImg}
@@ -50,7 +70,7 @@ const Customizer = () => {
   }
 
   const handleSubmit = async (type) => {
-    if(!prompt) return alert("Please enter a prompt");
+    if (!prompt) return alert("Please enter a prompt");
 
     try {
       setGeneratingImg(true);
@@ -72,7 +92,7 @@ const Customizer = () => {
     } catch (error) {
       alert(error)
     } finally {
-      
+
       setGeneratingImg(false);
       setActiveEditorTab("");
     }
@@ -81,19 +101,20 @@ const Customizer = () => {
   const handleDecals = (type, result) => {
     const decalType = DecalTypes[type];
 
-    state[decalType.stateProperty] = result;
+    state2[decalType.stateProperty] = result;
+    
 
-    if(!activeFilterTab[decalType.filterTab]) {
+    if (!activeFilterTab[decalType.filterTab]) {
       handleActiveFilterTab(decalType.filterTab)
     }
   }
 
   const handleSaveImage = () => {
-      
-    axios.post(`http://localhost:5001/users/65ee04cb1a101fe269163772/images`,{ b_64_image: b_64_image_var })
+
+    axios.post(`http://localhost:5001/users/65ee04cb1a101fe269163772/images`, { b_64_image: b_64_image_var })
       .then(response => {
         // Handle success
-        
+
         console.log('Image saved successfully');
       })
       .catch(error => {
@@ -102,37 +123,32 @@ const Customizer = () => {
       });
   };
 
-  
-const handleGetImages = () => {
-  axios.get(`http://localhost:5001/users/65ee04cb1a101fe269163772/images`)
-    .then(response => {
-      // Handle success
-      console.log('Images retrieved successfully:', response.data.images);
-    })
-    .catch(error => {
-      // Handle error
-      console.error('Error retrieving images:', error);
-    });
-};
+
+  const handleGetImages = () => {
+    axios.get(`http://localhost:5001/users/65ee04cb1a101fe269163772/images`)
+      .then(response => {
+        // Handle success
+        console.log('Images retrieved successfully:', response.data.images);
+      })
+      .catch(error => {
+        // Handle error
+        console.error('Error retrieving images:', error);
+      });
+  };
 
   const handleActiveFilterTab = (tabName) => {
     switch (tabName) {
       case "logoShirt":
-          state.isLogoTexture = !activeFilterTab[tabName];
+        state2.isLogoTexture = !activeFilterTab[tabName];
         break;
       case "stylishShirt":
-          state.isFullTexture = !activeFilterTab[tabName];
+        state2.isFullTexture = !activeFilterTab[tabName];
         break;
       default:
-        state.isLogoTexture = true;
-        state.isFullTexture = false;
+        state2.isLogoTexture = true;
+        state2.isFullTexture = false;
         break;
     }
-  
-
-   
-
-    // after setting the state, activeFilterTab is updated
 
     setActiveFilterTab((prevState) => {
       return {
@@ -145,6 +161,7 @@ const handleGetImages = () => {
   const readFile = (type) => {
     reader(file)
       .then((result) => {
+        setb_64_image_var(result.slice(23));
         handleDecals(type, result);
         setActiveEditorTab("");
       })
@@ -161,15 +178,16 @@ const handleGetImages = () => {
           >
             <div className="flex items-center min-h-screen">
               <div className="editortabs-container tabs">
+                {generateTabContent()}
                 {EditorTabs.map((tab) => (
-                  <Tab 
+                  <Tab
                     key={tab.name}
                     tab={tab}
                     handleClick={() => setActiveEditorTab(tab.name)}
                   />
                 ))}
 
-                {generateTabContent()}
+
               </div>
             </div>
           </motion.div>
@@ -178,13 +196,13 @@ const handleGetImages = () => {
             className="absolute z-10 top-5 right-5"
             {...fadeAnimation}
           >
-            <CustomButton 
+            <CustomButton
               type="filled"
               title="save it"
               handleClick={handleSaveImage}
               customStyles="w-fit px-4 py-2.5 font-bold text-sm"
             />
-            
+
           </motion.div>
 
           <motion.div
