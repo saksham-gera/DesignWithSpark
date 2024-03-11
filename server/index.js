@@ -12,7 +12,7 @@ dotenv.config();
 
 
 // MongoDB connection URI
-const mongoURI = 'mongodb+srv://ajha94023:3PX3aEsdgLIwknpN@cluster2.mwjrxlb.mongodb.net/?retryWrites=true&w=majority&appName=cluster2';
+const mongoURI = 'mongodb+srv://ajha94023:qwertyuiop98765@cluster2.mwjrxlb.mongodb.net/?retryWrites=true&w=majority&appName=cluster2';
 
 
 
