@@ -10,18 +10,20 @@ export const loginUser = async (req, res) => {
     try {
         const currentUser = await User.login(email, password)
         const token = createToken(currentUser._id);
-        res.status(200).json({ email, token });
+        res.status(200).json({ token });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 }
 
 export const signupUser = async (req, res) => {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
     try {
         const createdUser = await User.signup(email, password);
+        await User.findByIdAndUpdate(createdUser._id, {name})
+
         const token = createToken(createdUser._id);
-        res.status(200).json({ email, token });
+        res.status(200).json({ token });
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -46,11 +48,9 @@ export const saveImageForUser = async (req, res) => {
         await User.findByIdAndUpdate(req.params.userId, {
              $push: { images: savedImage._id } 
             }); 
-
             res.status(201).send({ savedImage });
         
     } catch (error) {
-        console.log(error);
         res.status(500).send({ error: error.message });
     }
 };
@@ -63,7 +63,7 @@ export const getAllImagesForUser = async (req, res) => {
         if (!user) {
             return res.status(404).send({ message: 'User not found' });
         }
-        
+  
         res.send({
              images: user.images
             });

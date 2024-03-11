@@ -13,8 +13,6 @@ export default function Editor() {
     useEffect(() => {
         if (location.state) {
             data = location.state;
-            console.log(data);
-            console.log("reached here in editor");
             imgObj.open(data.currBase64Data);
         }
     }, [location]);
