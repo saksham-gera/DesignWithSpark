@@ -110,7 +110,7 @@ const Login = () => {
             <a href="google.com">Forget Your Password?</a>
             <button type='submit' style={{ fontSize: '18px' }}>Login</button>
           </form>
-        </div>
+        </div> 
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">

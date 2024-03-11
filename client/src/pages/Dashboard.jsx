@@ -11,18 +11,18 @@ export default function Dashboard() {
 
   return (
 
-    <div className='mt-4 flex justify-between dashboard'>
-      <div className="left flex flex-col items-center justify-center">
+    <div className='mr-[2rem] mt-5 flex flex-col lg:flex-row justify-between dashboard'>
+      <div className="flex flex-col items-center justify-center">
         <div className="mid flex flex-col">
           <GreetingBox/>
-          <div className="flex">
+          <div className="flex lg:flex-row flex-col item-center justify-center mb-5">
             <AreaChart />
             <Summarycard />
           </div>
         </div>
         <MetricsContainer />
       </div>
-      <div className="right">
+      <div className="md:ml-8 ml-0">
         <AIWithText />      
       </div>
     </div>
