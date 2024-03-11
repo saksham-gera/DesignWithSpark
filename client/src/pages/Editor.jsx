@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ImageEditorComponent } from '@syncfusion/ej2-react-image-editor';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 // import { Button } from '@syncfusion/ej2-buttons'
 
 export default function Editor() {
     const [base64, setBase64] = useState({ logo: "", full: "" });
     var imgObj;
+    const location = useLocation();
+    let data;
+
+    useEffect(() => {
+        if (location.state) {
+            data = location.state;
+            console.log(data);
+            console.log("reached here in editor");
+            imgObj.open(data.currBase64Data);
+        }
+    }, [location]);
 
     let canvas;
     const saveClick = () => {
@@ -17,6 +28,7 @@ export default function Editor() {
         const context = canvas.getContext('2d');
         context.putImageData(imageData, 0, 0);
     };
+
 
     const applyOnTshirt = () => {
         saveClick();
