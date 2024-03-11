@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function GreetingBox({name}) {
   return (
-    <div>
+    <div className='ml-[4rem]'>
         <div className="name">
             <span className="text-slate-500 font-bold hello">Hello, </span> <b className='text-black font-bold'>{name}</b> 👋
         </div>
