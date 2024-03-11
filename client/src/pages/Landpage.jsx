@@ -9,7 +9,7 @@ export default function Landing() {
 
   return (
 
-    <div className="aakhu w-full md:h-[100vh] h-full">
+    <div className="aakhu w-full md:h-[100vh]">
       
       <div className="body flex md:flex-row flex-col">
         <div className="content">
