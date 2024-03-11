@@ -10,8 +10,8 @@ import { IconButton } from '@mui/material';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
-
-
+import CollectionsIcon from '@mui/icons-material/Collections';
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 
 export default function Sidebar() {
     const [expanded, setExpanded] = useState(true);
@@ -32,6 +32,16 @@ export default function Sidebar() {
             name: "Editor",
             route: "/editor",
             icon: <BorderColorIcon fontSize='small' />
+        },
+        {
+            name: "Customizer",
+            route: "/customize",
+            icon: <AutoFixHighIcon fontSize='small' />
+        },
+        {
+            name: "Templates",
+            route: "/templates",
+            icon: <CollectionsIcon fontSize='small' />
         },
         {
             name: "Inventory",

@@ -6,6 +6,10 @@ import AskAI from '../pages/AskAI';
 import Editor from '../pages/Editor';
 import Aboutus from '../pages/Aboutus';
 
+import Templates from './Template/TemplateCard';
+import TshirtCustomizer from '../pages/dcustomize';
+
+
 export default function Content() {
   return (
     
@@ -15,7 +19,9 @@ export default function Content() {
             <Route path='/createnew' element={<Create />}/>
             <Route path='/askai' element={<AskAI />}/>
             <Route path='/editor' element={<Editor />}/>
+            <Route path='/templates' element={<Templates />}/>
             <Route path='/aboutus' element={< Aboutus/>}/>
+            <Route path='/customize' element={<TshirtCustomizer />}/>
             <Route path='/logout' element={<div className='text-blue-800'>Log Out Success</div>}/>
 
         </Routes>
