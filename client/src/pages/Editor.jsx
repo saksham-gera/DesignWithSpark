@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // import { Button } from '@syncfusion/ej2-buttons'
 
 export default function Editor() {
-    const [base64,setBase64] = useState({logo: "", full: ""});
+    const [base64, setBase64] = useState({ logo: "", full: "" });
     var imgObj;
 
     let canvas;
@@ -20,21 +20,24 @@ export default function Editor() {
 
     const applyOnTshirt = () => {
         saveClick();
-        setBase64({...base64 ,full: canvas.toDataURL()});
+        setBase64({ ...base64, full: canvas.toDataURL() });
     }
 
     const applyOnLogo = () => {
         saveClick();
-        setBase64({...base64 ,logo: canvas.toDataURL()});
+        setBase64({ ...base64, logo: canvas.toDataURL() });
     }
 
 
     return (
-        <div className='h-[100vh]'>
-            <ImageEditorComponent ref={(img) => { imgObj = img; }}/>
-            <button className='btn btn-primary' onClick={applyOnTshirt}>Apply On T-Shirt</button>
-            <button className='btn btn-primary' onClick={applyOnLogo}>Apply On Logo</button>
-            <Link to={'/createnew'} state= {base64}><button className='btn btn-primary'>Show On Model</button></Link>
+        <div className='h-[90vh]'>
+            <ImageEditorComponent height='90%' ref={(img) => { imgObj = img; }} />
+            <div className="m-3 flex justify-center items-center model-buttons">
+                <button className='mr-2 btn btn-outline-primary' onClick={applyOnTshirt}>Apply On T-Shirt</button>
+                <button className='mr-2 btn btn-outline-primary' onClick={applyOnLogo}>Apply On Logo</button>
+                {base64.logo || base64.full ? <Link to={'/createnew'} state={base64}><button className='btn btn-outline-success'>Show On Model</button></Link> : <button className='btn btn-outline-secondary' disabled={!base64.logo || !base64.full}>Show On Model</button>}
+            </div>
+
         </div>
     )
 }
