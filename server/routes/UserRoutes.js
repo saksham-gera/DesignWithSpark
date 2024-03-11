@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router({mergeParams: true});
 import deleteAllImages,{loginUser,signupUser,saveImageForUser,getAllImagesForUser, getImageData} from '../controllers/UserController.js';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+import {User} from '../models/User.js';
 
 
 const verifyToken = (req, res, next) => {
