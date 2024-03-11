@@ -4,7 +4,6 @@ import AreaChart from '../components/AreaChart';
 
 import Summarycard from '../components/Summarycard';
 import MetricsContainer from '../components/metricCard/Metriccontainer';
-import AskAI from './AskAI';
 import GreetingBox from '../components/GreetingBox';
 import AIWithText from '../components/AIWithText';
 export default function Dashboard() {

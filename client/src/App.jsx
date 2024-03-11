@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import Activity from './Activity'
 import Landing from './pages/Landpage'
 import { registerLicense } from "@syncfusion/ej2-base";
+import Login from './pages/Login'
 
 registerLicense("Ngo9BigBOggjHTQxAR8/V1NAaF1cVGhNYVppR2Nbe05zflVCalhWVBYiSV9jS3pTdURjWHped3BVQ2RfVw==");
 function App() {
@@ -12,7 +13,7 @@ function App() {
     <>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          {window.location.pathname === '/' ? (<Landing />) : (<Activity />)}
+          {window.location.pathname === '/' ? (<Landing />) : window.location.pathname === '/login' ? <Login /> : (<Activity />)}
         </ThemeProvider>
       </BrowserRouter>
     </>

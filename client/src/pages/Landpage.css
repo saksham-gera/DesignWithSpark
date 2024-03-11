@@ -1,6 +1,7 @@
 .aakhu{
     background-color: rgb(216, 233, 248);
-    height: 66rem;
+    height: 100vh;
+    overflow: hidden;
 }
 .navbar{
     display: flex;
