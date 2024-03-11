@@ -9,11 +9,11 @@ import AddIcon from '@mui/icons-material/Add';
 import { IconButton } from '@mui/material';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { motion } from "framer-motion";
-import CollectionsIcon from '@mui/icons-material/Collections';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from './Auth';
+
 
 
 

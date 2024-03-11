@@ -27,6 +27,7 @@ export default function TopBar() {
                                 : "Error 404";
 
 
+
   return (
     <div className='flex py-4 sticky top-0 bg-white z-10 text-black items-center justify-between w-full topBar'>
         <div className="ml-4 font-semibold text-xl selectedMenuItem">
@@ -49,7 +50,6 @@ export default function TopBar() {
                     </div>
                     <div className="text-xs ml-2 m-1 profile-email">
                         {userDetails.email}
-
                     </div>
                 </div>
             </div>
