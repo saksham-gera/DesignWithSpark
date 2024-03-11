@@ -20,7 +20,6 @@ router.use(express.json());
 // POST route for image generation
 router.post('/generate', async (req, res) => {
   const { prompt } = req.body;
-  // console.log('Prompt:', prompt);
   try {
     const response = await openai.images.generate({
       // model: 'dall-e-2', 
@@ -30,7 +29,6 @@ router.post('/generate', async (req, res) => {
     });
 
     const image = response.data[0].b64_json;
-    console.log('Image generated:', image);
     res.status(200).json({ photo: image });
 
     // res.status(200).json({ photo: image});

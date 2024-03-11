@@ -3,6 +3,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    scroll-behavior: smooth;
     overflow-y: hidden;
     background-size: 115%;
     transition: background-size 0.5s ease-in-out;
