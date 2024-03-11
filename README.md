@@ -46,7 +46,7 @@ npm install npm@latest -g
 Clone the repository:
 bash
 Copy code
-git clone https://github.com/yourusername/Design-with-Spark.git
+git clone https://github.com/saksham-gera/Design-with-Spark.git
 Install NPM packages for both client and server directories:
 
 # In the client directory
@@ -71,7 +71,7 @@ npm run dev
 ```
 
 
-License 📄
+# License 📄
 Distributed under the MIT License. See LICENSE for more information.
 
 
