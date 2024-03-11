@@ -22,15 +22,16 @@ const Summarycard = () => {
       <div className='mb-10'>
         <div className="flex items-center mb-4">
           <FaCheckCircle className="text-green-500 mr-2" />
-          <p>Spending course was taken</p>
+          <div>Use gen AI for creating Image </div>
+
         </div>
         <div className="flex items-center mb-4">
           <FaCheckCircle className="text-blue-500 mr-2" />
-          <p>Deposit programs was setup</p>
+          <p>Choose from range of templates</p>
         </div>
         <div className="flex items-center">
           <FaCheckCircle className="text-orange-500 mr-2" />
-          <p>Cashback program activated</p>
+          <p>T-shirt customization page</p>
         </div>
       </div>
     </div>

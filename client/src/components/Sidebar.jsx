@@ -45,6 +45,11 @@ export default function Sidebar() {
             name: "Inventory",
             route: "/inventory",
             icon: <InventoryIcon fontSize='small' />
+        },
+        {
+            name: "About Us",
+            route: "/aboutus",
+            icon: <InventoryIcon fontSize='small' />
         }
     ];
 

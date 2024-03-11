@@ -11,7 +11,7 @@ export default function TopBar() {
 
     const {userDetails} = useAuth();
 
-    let pageName = pathname == '/dashboard' ? "Dashboard" : pathname == '/createnew' ? "Create New Design" : pathname == '/editor' ? "Customise Your Design" : pathname == '/inventory' ? "Inventory" : "Error 404";
+    let pageName = pathname == '/dashboard' ? "Dashboard" : pathname == '/createnew' ? "Create New Design" : pathname == '/editor' ? "Customise Your Design" : pathname == '/inventory' ? "Inventory" : pathname == '/aboutus' ? "About Us": "Error 404";
     
 
   return (

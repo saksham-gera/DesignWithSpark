@@ -9,8 +9,6 @@ const MetricCard = ({ label, value, IconComponent, trend }) => {
 
   return (
     <div className="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-between">
-        <div className='color-red'> {IconComponent && <IconComponent color="primary" className=" mr-2" />}</div>
-  
       <div className={`text-xl ${trendColor} flex items-center`}>
 
         {value}
