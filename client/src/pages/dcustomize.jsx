@@ -12,7 +12,7 @@ function TShirtCustomizer() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center  bg-gray-100 min-h-screen">
+    <div className="flex flex-col items-center mt-5  bg-gray-100 min-h-screen">
       <h1 className="text-2xl sm:text-3xl font-bold text-gray-700 mb-5 sm:mb-8">
         Customize T-Shirt
       </h1>

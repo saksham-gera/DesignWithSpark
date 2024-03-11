@@ -50,16 +50,6 @@ export default function Sidebar() {
             icon: <AutoFixHighIcon fontSize='small' />
         },
         {
-            name: "Templates",
-            route: "/templates",
-            icon: <CollectionsIcon fontSize='small' />
-        },
-        {
-            name: "Inventory",
-            route: "/inventory",
-            icon: <InventoryIcon fontSize='small' />
-        },
-        {
             name: "About Us",
             route: "/aboutus",
             icon: <InventoryIcon fontSize='small' />

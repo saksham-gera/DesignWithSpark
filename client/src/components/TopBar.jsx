@@ -20,12 +20,8 @@ export default function TopBar() {
                 ? "Create New Design"
                 : pathname == "/editor"
                     ? "Customise Your Design"
-                    : pathname == "/inventory"
-                        ? "Inventory"
                         : pathname == "/aboutus"
                             ? "About Us"
-                            : pathname == "/templates"
-                                ? "Templates"
                                 : pathname == "/customize"
                                     ? "Customize"
                                 : "Error 404";
