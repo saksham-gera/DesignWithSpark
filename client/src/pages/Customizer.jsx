@@ -72,7 +72,7 @@ const Customizer = () => {
     try {
       setGeneratingImg(true);
 
-      const response = await fetch('http://localhost:5001/dalle/generate', {
+      const response = await fetch('https://design-with-spark-server.vercel.app/dalle/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ const Customizer = () => {
 
   const handleSaveImage = () => {
 
-    axios.post(`http://localhost:5001/users/65ee04cb1a101fe269163772/images`, { b_64_image: b_64_image_var })
+    axios.post(`https://design-with-spark-server.vercel.app/users/65ee04cb1a101fe269163772/images`, { b_64_image: b_64_image_var })
       .then(response => {
         // Handle success
 
@@ -122,7 +122,7 @@ const Customizer = () => {
 
 
   const handleGetImages = () => {
-    axios.get(`http://localhost:5001/users/65ee04cb1a101fe269163772/images`)
+    axios.get(`https://design-with-spark-server.vercel.app/users/65ee04cb1a101fe269163772/images`)
       .then(response => {
         // Handle success
         console.log('Images retrieved successfully:', response.data.images);

@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
       if (!localStorage.getItem('token')) {
         console.log("Please Login First!")
       } else {
-        const response = await axios.get('http://localhost:5001/users/login', {
+        const response = await axios.get('https://design-with-spark-server.vercel.app/users/login', {
           headers: { Authorization: localStorage.getItem('token') },
         });
         console.log('User profile:', response);
