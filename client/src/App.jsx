@@ -18,6 +18,7 @@ function App() {
     <>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
+          {console.log(window.location.pathname)}
           {window.location.pathname === '/' ? (<Landing />) : window.location.pathname === '/login' && !IsLoggedIn ? <Login /> : (<Activity />) }
         </ThemeProvider>
       </BrowserRouter>
