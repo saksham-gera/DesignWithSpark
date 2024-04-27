@@ -22,7 +22,6 @@ mongoose.connect(mongoURI, {
 });
 
 const port = 5001;
-
 // Use the routes
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
@@ -36,3 +35,4 @@ app.use('/users',UserRoutes);
 app.listen(port, () => {
   console.log(`Server listening at ${port}`);
 });
+

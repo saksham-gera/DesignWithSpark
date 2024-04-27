@@ -18,7 +18,7 @@ function App() {
     <>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          {window.location.pathname == '/' ? (<Landing />) : window.location.pathname == '/login' && !IsLoggedIn ? <Login /> : (<Activity />) }
+          {window.location.pathname === '/' ? (<Landing />) : window.location.pathname === '/login' && !IsLoggedIn ? <Login /> : (<Activity />) }
         </ThemeProvider>
       </BrowserRouter>
     </>
