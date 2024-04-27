@@ -8,10 +8,8 @@ import bodyParser from "body-parser";
 dotenv.config();
 const app = express();
 // MongoDB connection URI
-const mongoURI = process.env.MONGO_URI;
+const mongoURI = process.env.MONGO_URL;
 
-app.use(bodyParser.json());
-app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Connect to MongoDB
