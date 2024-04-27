@@ -23,7 +23,7 @@ mongoose.connect(mongoURI, {
 
 const port = 5001;
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'https://design-with-spark.vercel.app/',
   optionsSuccessStatus: 200
 }
 // Use the routes
