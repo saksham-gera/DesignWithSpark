@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-import config from '../config/config';
 import state2 from '../store';
-import { download } from '../assets';
-import { downloadCanvasToImage, reader } from '../config/helpers';
+import { reader } from '../config/helpers';
 import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants';
 import { fadeAnimation, slideAnimation } from '../config/motion';
 import { OpenInEditor, AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../components';

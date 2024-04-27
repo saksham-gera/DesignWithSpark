@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import {mockAccountData} from '../mock.js';
@@ -6,13 +7,26 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { IconButton } from '@mui/material';
 import { useAuth } from './Auth.jsx';
 
+
 export default function TopBar() {
-    const {pathname} = useLocation();
+    const { pathname } = useLocation();
 
     const {userDetails} = useAuth();
 
-    let pageName = pathname == '/dashboard' ? "Dashboard" : pathname == '/createnew' ? "Create New Design" : pathname == '/editor' ? "Customise Your Design" : pathname == '/inventory' ? "Inventory" : pathname == '/aboutus' ? "About Us": "Error 404";
-    
+    let pageName =
+        pathname == "/dashboard"
+            ? "Dashboard"
+            : pathname == "/createnew"
+                ? "Create New Design"
+                : pathname == "/editor"
+                    ? "Customise Your Design"
+                        : pathname == "/aboutus"
+                            ? "About Us"
+                                : pathname == "/customize"
+                                    ? "Customize"
+                                : "Error 404";
+
+
 
   return (
     <div className='flex py-4 sticky top-0 bg-white z-10 text-black items-center justify-between w-full topBar'>
@@ -41,5 +55,5 @@ export default function TopBar() {
             </div>
         </div>
     </div>
-  )
+    );
 }

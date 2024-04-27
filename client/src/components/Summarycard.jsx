@@ -3,7 +3,7 @@ import { FaCheckCircle } from 'react-icons/fa'; // Make sure to install react-ic
 
 const Summarycard = () => {
   return (
-    <div className="bg-dark-blue h-min w-max rounded-lg p-6 text-[#EEEEEE]" style={{ backgroundColor: '#243B55', maxWidth: '500px', borderRadius: '25px', padding: '24px', color: '#FFFFFF' }}>
+    <div className="mx-auto  w-full md:bg-dark-blue  rounded-lg p-6 text-[#EEEEEE] max-w-[90%]" style={{ backgroundColor: '#243B55',  borderRadius: '25px', padding: '24px', color: '#FFFFFF' }}>
       <h2 className="text-xl font-bold mb-4">Performance</h2>
 
       {/* Income and Spendings Metrics */}

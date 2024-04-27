@@ -8,10 +8,7 @@ import bodyParser from "body-parser";
 dotenv.config();
 const app = express();
 // MongoDB connection URI
-const mongoURI = 'mongodb+srv://ajha94023:qwertyuiop98765@cluster2.mwjrxlb.mongodb.net/?retryWrites=true&w=majority&appName=cluster2';
-app.use(bodyParser.json());
-app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
+const mongoURI = process.env.MONGO_URL;
 
 // Connect to MongoDB
 mongoose.connect(mongoURI, {
@@ -30,6 +27,7 @@ const corsOptions = {
 // Use the routes
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use('/dalle', dalleRoutes);

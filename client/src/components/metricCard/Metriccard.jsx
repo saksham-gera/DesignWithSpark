@@ -8,7 +8,7 @@ const MetricCard = ({ label, value, IconComponent, trend }) => {
   const TrendIcon = trend === 'up' ? ArrowUpwardIcon : ArrowDownwardIcon;
 
   return (
-    <div className="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-between">
+    <div className="bg-white rounded-lg shadow p-3 flex flex-col items-center justify-between">
       <div className={`text-xl ${trendColor} flex items-center`}>
 
         {value}
