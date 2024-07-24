@@ -4,7 +4,6 @@ Welcome to **Design-with-Spark**, a cutting-edge web application that unleashes 
 
 ![Design-with-Spark img2](./client/public/Tshirt-1.png) 
 
-
 ## Features 🚀
 
 - **AI-Powered Design Tools:** Leverage generative AI to create unique and beautiful T-shirt designs.
