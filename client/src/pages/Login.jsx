@@ -39,7 +39,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     try {
       e.preventDefault();
-      const response = await axios.post('https://design-with-spark-server.vercel.app/users/login', formData);
+      const response = await axios.post(import.meta.env.VITE_BACKEND_SERVER+'/users/login', formData);
       if (response.status == 200) {
         const { token } = response.data;
         localStorage.setItem('token', token);
@@ -56,7 +56,7 @@ const Login = () => {
   const handleSignup = async (e) => {
     try {
         e.preventDefault();
-        const response = await axios.post('https://design-with-spark-server.vercel.app/users/signup', formSignupData);
+        const response = await axios.post(import.meta.env.VITE_BACKEND_SERVER+'/users/signup', formSignupData);
 
         if (response.status == 200) {
             const { token } = response.data;

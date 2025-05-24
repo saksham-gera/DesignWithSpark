@@ -11,6 +11,7 @@ import { downloadCanvasToImage, reader } from '../config/helpers';
 import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants';
 import { fadeAnimation, slideAnimation } from '../config/motion';
 import { OpenInEditor, AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../components';
+import toast from 'react-hot-toast';
 
 const Customizer = () => {
   const snap = useSnapshot(state2);
@@ -67,33 +68,40 @@ const Customizer = () => {
   }
 
   const handleSubmit = async (type) => {
-    if (!prompt) return alert("Please enter a prompt");
+  if (!prompt) return alert("Please enter a prompt");
 
-    try {
-      setGeneratingImg(true);
+  try {
+    setGeneratingImg(true);
 
-      const response = await fetch(import.meta.env.VITE_BACKEND_SERVER + '/dalle/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          prompt,
-        })
-      })
+    const response = await fetch(import.meta.env.VITE_BACKEND_SERVER + '/dalle/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ prompt })
+    });
 
-      const data = await response.json();
-
-      handleDecals(type, `data:image/png;base64,${data.photo}`);
-      setb_64_image_var(data.photo);
-    } catch (error) {
-      alert(error)
-    } finally {
-
-      setGeneratingImg(false);
-      setActiveEditorTab("");
+    if (!response.ok) {
+      const errorText = await response.text(); // fallback in case JSON isn't returned
+      throw new Error(`Server Error: ${response.status} - ${errorText}`);
     }
+
+    const data = await response.json();
+
+    if (!data?.photo) {
+      throw new Error("Invalid response from server: 'photo' not found");
+    }
+
+    handleDecals(type, `data:image/png;base64,${data.photo}`);
+    setb_64_image_var(data.photo);
+  } catch (error) {
+    console.error("Error generating image:", error);
+    toast.error("Failed to generate image. Please try again later.");
+  } finally {
+    setGeneratingImg(false);
+    setActiveEditorTab("");
   }
+};
 
   const handleDecals = (type, result) => {
     const decalType = DecalTypes[type];
@@ -106,32 +114,41 @@ const Customizer = () => {
     }
   }
 
-  const handleSaveImage = () => {
+  const handleSaveImage = async () => {
+  try {
+    const response = await axios.post(
+      import.meta.env.VITE_BACKEND_SERVER+`/users/65ee04cb1a101fe269163772/images`,
+      { b_64_image: b_64_image_var }
+    );
 
-    axios.post(`https://design-with-spark-server.vercel.app/users/65ee04cb1a101fe269163772/images`, { b_64_image: b_64_image_var })
-      .then(response => {
-        // Handle success
+    if (response.status !== 200) {
+      throw new Error(`Unexpected status code: ${response.status}`);
+    }
 
-        console.log('Image saved successfully');
-      })
-      .catch(error => {
-        // Handle error
-        console.error('Error saving image:', error);
-      });
-  };
+    console.log('Image saved successfully');
+  } catch (error) {
+    console.error('Error saving image:', error);
+    alert("Failed to save image. Please try again.");
+  }
+};
 
 
-  const handleGetImages = () => {
-    axios.get(`https://design-with-spark-server.vercel.app/users/65ee04cb1a101fe269163772/images`)
-      .then(response => {
-        // Handle success
-        console.log('Images retrieved successfully:', response.data.images);
-      })
-      .catch(error => {
-        // Handle error
-        console.error('Error retrieving images:', error);
-      });
-  };
+  const handleGetImages = async () => {
+  try {
+    const response = await axios.get(
+      import.meta.env.VITE_BACKEND_SERVER+`/users/65ee04cb1a101fe269163772/images`
+    );
+
+    if (response.status !== 200 || !Array.isArray(response.data?.images)) {
+      throw new Error("Unexpected response format");
+    }
+
+    console.log('Images retrieved successfully:', response.data.images);
+  } catch (error) {
+    console.error('Error retrieving images:', error);
+    alert("Failed to retrieve images. Please try again.");
+  }
+};
 
   const handleActiveFilterTab = (tabName) => {
     switch (tabName) {

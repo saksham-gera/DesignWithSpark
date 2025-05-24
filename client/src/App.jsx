@@ -9,7 +9,6 @@ import { useAuth } from './components/Auth'
 import { Toaster } from 'react-hot-toast'
 
 
-
 function App() {
   const {IsLoggedIn} = useAuth();
 
