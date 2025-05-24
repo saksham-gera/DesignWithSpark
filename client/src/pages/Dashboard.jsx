@@ -17,10 +17,10 @@ export default function Dashboard() {
           <GreetingBox/>
           <div className="flex lg:flex-row flex-col item-center justify-center mb-5">
             <AreaChart />
-            <Summarycard />
+            {/* <Summarycard /> */}
           </div>
         </div>
-        <MetricsContainer />
+        {/* <MetricsContainer /> */}
       </div>
       <div className="md:ml-8 ml-0">
         <AIWithText />      

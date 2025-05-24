@@ -34,12 +34,6 @@ export default function TopBar() {
             {pageName}
         </div>
         <div className="flex items-center justify-evenly w-72 accountButtons">
-            <IconButton>
-                <MailRoundedIcon fontSize='small'/>
-            </IconButton>
-            <IconButton>
-                <NotificationsNoneIcon fontSize='small'/>
-            </IconButton>
             <div className="flex justify-center items-center profile">
                 <div className="profile-pic h-8 w-8">
                     <img src={mockAccountData.profilePicture} alt="profile-pic" className="object-fill rounded profile-pic" />

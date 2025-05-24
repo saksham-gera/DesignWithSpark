@@ -62,7 +62,7 @@ export default function AreaChart() {
     }
     return (
         <div className='flex'>
-            <Chart className="m-4" options={data.options} series={data.series} type='area' height={350} width={450}/>
+            <Chart className="m-4" options={data.options} series={data.series} type='area' height={500} width={650}/>
             
         </div>
     )

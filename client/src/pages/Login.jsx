@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGooglePlusG, faFacebookF, faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faGooglePlusG, faFacebookF, faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import './Login.css'; // Import your CSS file
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
-import { Direction } from '@syncfusion/ej2-react-image-editor';
+import toast from 'react-hot-toast';
+// import { Direction } from '@syncfusion/ej2-react-image-editor';
 
 
 const Login = () => {
@@ -73,16 +73,15 @@ const Login = () => {
 
   return (
     <div className="aakhu">
-      <Toaster />
       <div className={`container ${isSignUp ? 'active' : ''}`} style={{  width: "65%" }}>
         <div className="form-container sign-up">
           <form onSubmit={handleSignup}>
             <h1 style={{ fontSize: "30px" }}>Create Account</h1>
             <div className="social-icons">
-              <a href="google.com" className="icon"><FontAwesomeIcon icon={faGooglePlusG} /></a>
+              {/* <a href="google.com" className="icon"><FontAwesomeIcon icon={faGooglePlusG} /></a>
               <a href="google.com" className="icon"><FontAwesomeIcon icon={faFacebookF} /></a>
               <a href="google.com" className="icon"><FontAwesomeIcon icon={faGithub} /></a>
-              <a href="google.com" className="icon"><FontAwesomeIcon icon={faLinkedinIn} /></a>
+              <a href="google.com" className="icon"><FontAwesomeIcon icon={faLinkedinIn} /></a> */}
             </div>
             <span>or use your email for registration</span>
             <input name='name' placeholder="Name" value={formSignupData.name}
@@ -98,10 +97,10 @@ const Login = () => {
           <form onSubmit={handleLogin}>
             <h1 style={{ fontSize: "30px" }}>Login</h1>
             <div className="social-icons">
-              <a href="google.com" className="icon"><FontAwesomeIcon icon={faGooglePlusG} /></a>
+              {/* <a href="google.com" className="icon"><FontAwesomeIcon icon={faGooglePlusG} /></a>
               <a href="google.com" className="icon"><FontAwesomeIcon icon={faFacebookF} /></a>
               <a href="google.com" className="icon"><FontAwesomeIcon icon={faGithub} /></a>
-              <a href="google.com" className="icon"><FontAwesomeIcon icon={faLinkedinIn} /></a>
+              <a href="google.com" className="icon"><FontAwesomeIcon icon={faLinkedinIn} /></a> */}
             </div>
             <span>or use your email password</span>
             <input type="email" name='email' value={formData.email}

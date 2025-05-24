@@ -72,7 +72,7 @@ const Customizer = () => {
     try {
       setGeneratingImg(true);
 
-      const response = await fetch('https://design-with-spark-server.vercel.app/dalle/generate', {
+      const response = await fetch(import.meta.env.VITE_BACKEND_SERVER + '/dalle/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -188,7 +188,7 @@ const Customizer = () => {
               </div>
             </div>
           </motion.div>
-
+{/* 
           <motion.div
             className="absolute z-10 top-5 right-5"
             {...fadeAnimation}
@@ -200,7 +200,7 @@ const Customizer = () => {
               customStyles="w-fit px-4 py-2.5 font-bold text-sm"
             />
 
-          </motion.div>
+          </motion.div> */}
 
           <motion.div
             className='filtertabs-container'

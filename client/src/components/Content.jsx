@@ -20,7 +20,6 @@ export default function Content() {
             <Route path='/aboutus' element={< Aboutus/>}/>
             <Route path='/customize' element={<TshirtCustomizer />}/>
             <Route path='/logout' element={<div className='text-blue-800'>Log Out Success</div>}/>
-
         </Routes>
     </div>
   )

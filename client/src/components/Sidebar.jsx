@@ -90,7 +90,7 @@ export default function Sidebar() {
 
                 {mainMenuData.map((item, index) => (
                     <Link to={item.route} style={{ textDecoration: "none" }}>
-                        <div onClick={() => setSelected(index)} className={selected === index ? "hover:bg-[#222831] text-[#76ABAE] border-solid border-r-8 border-transparent border-[#76ABAE]" : "hover:bg-[#222831] border-solid border-r-8 border-transparent hover:border-[#76ABAE]"}>
+                        <div onClick={() => setSelected(index)} className={selected === index ? "hover:bg-[#222831] text-[#76ABAE] border-solid border-r-8 border-[#76ABAE]" : "hover:bg-[#222831] border-solid border-r-8 border-transparent hover:border-[#76ABAE]"}>
                             <div className={expanded ? "w-full pl-6 pt-3 pb-3 flex justify-center items-center " : "pt-3 pb-3 w-full flex justify-center"}>
                                 {item.icon}
                                 <div className={expanded ? "flex w-full pl-2 text-md" : "hidden"}>
@@ -104,7 +104,7 @@ export default function Sidebar() {
                 <div className="mt-12 ml-4 opacity-60 font-bold text-sm menuItemsHeading">
                     {expanded && "Account"}
                 </div>
-                <div onClick={logout} className="hover:bg-[#222831] text-white border-solid border-r-8 border-transparent border-[#76ABAE]">
+                <div onClick={logout} className="hover:bg-[#222831] text-white border-solid border-r-8 border-transparent">
                     <Link to='/'>
                         <div className={expanded ? "w-full pl-6 pt-3 pb-3 flex justify-center items-center " : "pt-3 pb-3 w-full flex justify-center"}>
                             <ExitToAppIcon fontSize='small' />
