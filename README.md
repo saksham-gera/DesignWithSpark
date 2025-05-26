@@ -1,6 +1,6 @@
-# Design-with-Spark ✨
+# My Tee 3D ✨
 
-Welcome to **Design-with-Spark**, a cutting-edge web application that unleashes your creativity, allowing you to design stunning T-shirts with the help of generative AI image generation. Dive into the world of fashion and personalize not just T-shirts but also Shirts, Hoodies, and Tank Tops with your unique touch. Featuring a dynamic dashboard, an intelligent AI chat-bot for assistance, and groundbreaking text-to-image technology, your design journey promises to be seamless and innovative.
+Welcome to **My Tee 3D**, a cutting-edge web application that unleashes your creativity, allowing you to design stunning T-shirts with the help of generative AI image generation. Dive into the world of fashion and personalize not just T-shirts but also Shirts, Hoodies, and Tank Tops with your unique touch. Featuring a dynamic dashboard, an intelligent AI chat-bot for assistance, and groundbreaking text-to-image technology, your design journey promises to be seamless and innovative.
 
 
 ![Design-with-Spark img2](./client/public/Tshirt-1.png) 
@@ -45,7 +45,7 @@ npm install npm@latest -g
 Clone the repository:
 bash
 Copy code
-git clone https://github.com/saksham-gera/Design-with-Spark.git
+git clone https://github.com/saksham-gera/MyTee3D.git
 Install NPM packages for both client and server directories:
 
 # In the client directory
