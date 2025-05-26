@@ -24,7 +24,9 @@ export default function TopBar() {
                             ? "About Us"
                                 : pathname == "/customize"
                                     ? "Customize"
-                                : "Error 404";
+                                        : pathname == "/orders"
+                                            ? "Orders" 
+                                                : "Error 404";
 
 
 

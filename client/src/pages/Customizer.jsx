@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import config from '../config/config';
@@ -17,6 +17,7 @@ const Customizer = () => {
   const snap = useSnapshot(state2);
   const location = useLocation();
   const [b_64_image_var, setb_64_image_var] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (location.state) {
@@ -68,87 +69,51 @@ const Customizer = () => {
   }
 
   const handleSubmit = async (type) => {
-  if (!prompt) return alert("Please enter a prompt");
+    if (!prompt) return alert("Please enter a prompt");
 
-  try {
-    setGeneratingImg(true);
+    try {
+      setGeneratingImg(true);
 
-    const response = await fetch(import.meta.env.VITE_BACKEND_SERVER + '/dalle/generate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ prompt })
-    });
+      const response = await fetch(import.meta.env.VITE_BACKEND_SERVER + '/dalle/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt })
+      });
 
-    if (!response.ok) {
-      const errorText = await response.text(); // fallback in case JSON isn't returned
-      throw new Error(`Server Error: ${response.status} - ${errorText}`);
+      if (!response.ok) {
+        const errorText = await response.text(); // fallback in case JSON isn't returned
+        throw new Error(`Server Error: ${response.status} - ${errorText}`);
+      }
+
+      const data = await response.json();
+
+      if (!data?.photo) {
+        throw new Error("Invalid response from server: 'photo' not found");
+      }
+
+      handleDecals(type, `data:image/jpeg;base64,${data.photo}`);
+      setb_64_image_var(data.photo);
+    } catch (error) {
+      console.error("Error generating image:", error);
+      toast.error("Failed to generate image. Please try again later.");
+    } finally {
+      setGeneratingImg(false);
+      setActiveEditorTab("");
     }
-
-    const data = await response.json();
-
-    if (!data?.photo) {
-      throw new Error("Invalid response from server: 'photo' not found");
-    }
-
-    handleDecals(type, `data:image/png;base64,${data.photo}`);
-    setb_64_image_var(data.photo);
-  } catch (error) {
-    console.error("Error generating image:", error);
-    toast.error("Failed to generate image. Please try again later.");
-  } finally {
-    setGeneratingImg(false);
-    setActiveEditorTab("");
-  }
-};
+  };
 
   const handleDecals = (type, result) => {
     const decalType = DecalTypes[type];
 
     state2[decalType.stateProperty] = result;
-    
+
 
     if (!activeFilterTab[decalType.filterTab]) {
       handleActiveFilterTab(decalType.filterTab)
     }
   }
-
-  const handleSaveImage = async () => {
-  try {
-    const response = await axios.post(
-      import.meta.env.VITE_BACKEND_SERVER+`/users/65ee04cb1a101fe269163772/images`,
-      { b_64_image: b_64_image_var }
-    );
-
-    if (response.status !== 200) {
-      throw new Error(`Unexpected status code: ${response.status}`);
-    }
-
-    console.log('Image saved successfully');
-  } catch (error) {
-    console.error('Error saving image:', error);
-    alert("Failed to save image. Please try again.");
-  }
-};
-
-
-  const handleGetImages = async () => {
-  try {
-    const response = await axios.get(
-      import.meta.env.VITE_BACKEND_SERVER+`/users/65ee04cb1a101fe269163772/images`
-    );
-
-    if (response.status !== 200 || !Array.isArray(response.data?.images)) {
-      throw new Error("Unexpected response format");
-    }
-
-    console.log('Images retrieved successfully:', response.data.images);
-  } catch (error) {
-    console.error('Error retrieving images:', error);
-    alert("Failed to retrieve images. Please try again.");
-  }
-};
 
   const handleActiveFilterTab = (tabName) => {
     switch (tabName) {
@@ -181,6 +146,118 @@ const Customizer = () => {
       })
   }
 
+  const updateOrderInDatabase = async (payment_id, order_id, signature) => {
+    try {
+      if (!localStorage.getItem('token')) {
+        console.log("Please Login First!");
+        toast.error("Please Login First!");
+        return;
+      }
+
+      const token = localStorage.getItem('token');
+
+      // Convert base64 to Blob
+      const byteCharacters = atob(b_64_image_var);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const imageBlob = new Blob([byteArray], { type: 'image/jpeg' });
+
+      const formData = new FormData();
+      formData.append('price', 1);
+      formData.append('rzp_orderid', order_id);
+      formData.append('rzp_paymentid', payment_id);
+      formData.append('rzp_signature', signature);
+      formData.append('image', imageBlob);
+
+      const placeOrderUrl = `${import.meta.env.VITE_BACKEND_SERVER}/orders/place`;
+
+      const response = await axios.post(placeOrderUrl, formData, {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      if (response.status === 200) {
+        console.log("Order Placed");
+        toast.success("Order Placed!");
+        navigate("/orders");
+      }
+    } catch (error) {
+      console.error('Order Place failed', error.response || error);
+      toast.error("Order failed");
+    }
+  };
+
+  const verifyPayment = async (payment_id, order_id, signature) => {
+    try {
+      let verifyPaymentUrl = `${import.meta.env.VITE_BACKEND_SERVER}/orders/place`;
+      const body = {
+        razorpay_payment_id: payment_id,
+        razorpay_order_id: order_id,
+        razorpay_signature: signature
+      };
+      let response = await axios.get(verifyPaymentUrl,
+        body
+      );
+      if (response.status == 200) {
+        console.log("payment verified");
+        updateOrderInDatabase(payment_id, order_id, signature);
+      } else {
+        toast.error("payment Verification Failed");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
+  }
+
+  const placeOrder = async (rzp_orderId) => {
+    var options = {
+      "key": import.meta.env.VITE_APP_RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
+      "amount": 1 * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": "My Tee 3D", //your business name
+      "description": "Pay For Your Favourites",
+      "image": "https://mytee3d.vercel.app/MyTee3D.png",
+      "order_id": rzp_orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response) {
+        console.log("payment Success");
+        verifyPayment(response.razorpay_payment_id, response.razorpay_order_id, response.razorpay_signature);
+      },
+      "theme": {
+        "color": "#800020"
+      }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+    rzp1.on('payment.failed', function (response) {
+      toast.error(response.error.description);
+    });
+  }
+
+  const createOrder = async () => {
+    try {
+      let createOrderUrl = `${import.meta.env.VITE_BACKEND_SERVER}/orders`;
+      console.log(createOrderUrl);
+      const body = {
+        amount: 1 * 100
+      };
+      let response = await axios.post(createOrderUrl,
+        body
+      );
+      if (response.status == 200) {
+        console.log(response.data.id);
+        placeOrder(response.data.id);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <AnimatePresence>
       {!snap.intro && (
@@ -205,19 +282,19 @@ const Customizer = () => {
               </div>
             </div>
           </motion.div>
-{/* 
+
           <motion.div
             className="absolute z-10 top-5 right-5"
             {...fadeAnimation}
           >
             <CustomButton
               type="filled"
-              title="Save It"
-              handleClick={handleSaveImage}
+              title="Buy"
+              handleClick={createOrder}
               customStyles="w-fit px-4 py-2.5 font-bold text-sm"
             />
 
-          </motion.div> */}
+          </motion.div>
 
           <motion.div
             className='filtertabs-container'

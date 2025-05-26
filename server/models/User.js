@@ -13,11 +13,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
-    },
-    images: [{
-        type: Schema.Types.ObjectId,
-      ref: 'ImageSchema'
-    }]
+    }
 })
 
 const ImageSchema = new Schema({

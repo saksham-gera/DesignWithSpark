@@ -84,7 +84,7 @@ const Aboutus = () => {
                 <p className="p-4 m-4 lg:text-xl text-sm  md:text-base">
                 Whether you're a salesperson seeking efficiency or a customer craving personalized T-shirts,{" "} 
   <span className="relative inline-block">
-    <span className="text-[#FEBD5F] text-2xl font-bold">DesignwithSpark  </span>
+    <span className="text-[#FEBD5F] text-2xl font-bold">My Tee 3D  </span>
     
   </span>
  {" "} invite you to join our community. Together, let's redefine the T-shirt customization experience and unlock endless possibilities.

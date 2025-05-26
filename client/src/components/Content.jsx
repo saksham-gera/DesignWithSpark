@@ -7,6 +7,7 @@ import Aboutus from '../pages/Aboutus';
 
 
 import TshirtCustomizer from '../pages/dcustomize';
+import Orders from '../pages/Orders';
 
 
 export default function Content() {
@@ -19,6 +20,7 @@ export default function Content() {
             <Route path='/editor' element={<Editor />}/>
             <Route path='/aboutus' element={< Aboutus/>}/>
             <Route path='/customize' element={<TshirtCustomizer />}/>
+            <Route path='/orders' element={<Orders />}/>
             <Route path='/logout' element={<div className='text-blue-800'>Log Out Success</div>}/>
         </Routes>
     </div>

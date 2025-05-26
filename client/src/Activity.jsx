@@ -9,7 +9,7 @@ export default function Activity() {
   const {IsLoggedIn} = useAuth();
   if(IsLoggedIn){
     return (
-    <>
+    <div className="h-[100vh]">
       <div className="flex select-none">
         <Sidebar />
         <div className="flex flex-column w-full content-main">
@@ -17,7 +17,7 @@ export default function Activity() {
           <Content />
         </div>
       </div>
-    </>
+    </div>
   );
   } else {
     return <Login />

@@ -9,7 +9,7 @@ const FilePicker = ({ file, setFile, readFile }) => {
         <input 
           id="file-upload"
           type="file"
-          accept="image/*"
+          accept="image/jpeg"
           onChange={(e) => setFile(e.target.files[0])}
         />
         <label htmlFor="file-upload" className="filepicker-label">

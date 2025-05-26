@@ -7,6 +7,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import StoreIcon from '@mui/icons-material/Store';
 import AddIcon from '@mui/icons-material/Add';
 import { IconButton } from '@mui/material';
 import FeedIcon from '@mui/icons-material/Feed';
@@ -31,7 +32,7 @@ export default function Sidebar() {
             setExpanded(false);
             setSidebarWidth('70vw');
         }
-        setSelected(pathname == '/dashboard' ? 0 : pathname == '/createnew' ? 1 : pathname == '/editor' ? 2 : pathname == '/inventory' ? 3 : pathname == '/aboutus' ? 4 : 0)
+        setSelected(pathname == '/dashboard' ? 0 : pathname == '/createnew' ? 1 : pathname == '/editor' ? 2 : pathname == '/inventory' ? 3 : pathname == '/orders' ? 4 : pathname == '/aboutus' ? 5 : 0)
     }, [isDesktopOrLaptop, isTabletOrMobile, location]);
 
 
@@ -57,6 +58,11 @@ export default function Sidebar() {
             icon: <AutoFixHighIcon fontSize='small' />
         },
         {
+            name: "Orders",
+            route: "/orders",
+            icon: <StoreIcon fontSize='small' />
+        },
+        {
             name: "About Us",
             route: "/aboutus",
             icon: <FeedIcon fontSize='small' />
@@ -76,7 +82,7 @@ export default function Sidebar() {
 
             <div className={expanded ? "  p-6 flex justify-between text-2xl font-bold" : "pt-6 pb-6 flex justify-center"}>
                 <div className={expanded ? "flex" : "hidden"}>
-                    DesignWithSpark
+                    My Tee 3D
                 </div>
                 <IconButton onClick={() => { setExpanded(!expanded) }} style={{ color: "white" }}>
                     {expanded ? <ArrowBackIosNewIcon color='white' /> : <ArrowForwardIosIcon color='white' />}

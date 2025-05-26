@@ -2,7 +2,7 @@ import {User,Images} from '../models/User.js';
 import jwt from 'jsonwebtoken';
 
 const createToken = (id) => {
-    return jwt.sign({ id }, "jldsjlgjslgjl", { expiresIn: '3d' });
+    return jwt.sign({ id }, process.env.JWT_SECRET_CODE, { expiresIn: '3d' });
 }
 
 export const loginUser = async (req, res) => {
